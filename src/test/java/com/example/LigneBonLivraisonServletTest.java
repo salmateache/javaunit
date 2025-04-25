@@ -19,7 +19,7 @@ public class LigneBonLivraisonServletTest {
 
     @Test
     public void testQuantiteIsNotZero() throws SQLException {
-        int id = servlet.insert("Produit Quantite Java", 11);
+        int id = servlet.insert("Produit Quantite Java2", 11);
         LigneBonLivraisonServlet.LigneBon ligne = servlet.findById(id);
 
         assertNotNull(ligne);
