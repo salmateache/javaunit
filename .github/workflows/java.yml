@@ -1,0 +1,41 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checkout du code source
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Configuration du JDK 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      # Caching des dépendances Maven pour accélérer les builds
+      - name: Cache Maven dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Build avec Maven
+      - name: Build with Maven
+        run: mvn clean install
+
+      # Exécution des tests avec Maven
+      - name: Run tests with Maven
+        run: mvn test

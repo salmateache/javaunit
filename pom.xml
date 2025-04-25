@@ -11,10 +11,10 @@
   <name>j2ee-example Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
-  <!-- Propriétés pour Java 11 -->
+  <!-- Propriétés pour Java 17 -->
   <properties>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.jupiter.version>5.9.1</junit.jupiter.version>
   </properties>
@@ -22,9 +22,9 @@
   <dependencies>
     <!-- Servlet API -->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
+      <groupId>jakarta.servlet</groupId> <!-- Utiliser jakarta.servlet plutôt que javax.servlet -->
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>5.0.0</version> <!-- Dernière version -->
       <scope>provided</scope>
     </dependency>
 
@@ -42,12 +42,19 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Mockito for servlet tests -->
+    <!-- Mockito pour les tests de Servlet -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <version>3.8.0</version>
       <scope>test</scope>
+    </dependency>
+
+    <!-- JDBC MySQL Connector -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.28</version> <!-- Remplace par la version que tu préfères -->
     </dependency>
   </dependencies>
 
@@ -55,7 +62,7 @@
     <finalName>j2ee-example</finalName>
 
     <plugins>
-      <!-- Compilation Java 11 -->
+      <!-- Compilation Java 17 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -66,7 +73,7 @@
         </configuration>
       </plugin>
 
-      <!-- Surefire pour exécuter JUnit 5 -->
+      <!-- Surefire pour exécuter les tests JUnit 5 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
